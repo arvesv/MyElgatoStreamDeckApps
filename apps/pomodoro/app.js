@@ -6,6 +6,7 @@ const tomatoImage = document.getElementById('tomato-image');
 
 let remainingSeconds = DURATION_SECONDS;
 let countdownInterval = null;
+let endTimestamp = null;
 
 const formatTime = (seconds) => {
   const minutes = Math.floor(seconds / 60)
@@ -20,6 +21,10 @@ const render = () => {
 
   keyElement.classList.toggle('running', isRunning);
   keyElement.classList.toggle('idle', !isRunning);
+  keyElement.setAttribute(
+    'aria-label',
+    isRunning ? 'Pomodoro timer running' : 'Start Pomodoro timer'
+  );
 
   timerText.hidden = !isRunning;
   tomatoImage.hidden = isRunning;
@@ -30,6 +35,7 @@ const render = () => {
 const stopCountdown = () => {
   clearInterval(countdownInterval);
   countdownInterval = null;
+  endTimestamp = null;
   remainingSeconds = DURATION_SECONDS;
   render();
 };
@@ -40,10 +46,11 @@ const startCountdown = () => {
   }
 
   remainingSeconds = DURATION_SECONDS;
+  endTimestamp = Date.now() + DURATION_SECONDS * 1000;
   render();
 
   countdownInterval = setInterval(() => {
-    remainingSeconds -= 1;
+    remainingSeconds = Math.max(0, Math.ceil((endTimestamp - Date.now()) / 1000));
 
     if (remainingSeconds <= 0) {
       stopCountdown();
