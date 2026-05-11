@@ -6,7 +6,7 @@ const tomatoImage = document.getElementById('tomato-image');
 
 let remainingSeconds = DURATION_SECONDS;
 let countdownInterval = null;
-let endTimestamp = null;
+let startTimestamp = null;
 
 const formatTime = (seconds) => {
   const minutes = Math.floor(seconds / 60)
@@ -35,7 +35,7 @@ const render = () => {
 const stopCountdown = () => {
   clearInterval(countdownInterval);
   countdownInterval = null;
-  endTimestamp = null;
+  startTimestamp = null;
   remainingSeconds = DURATION_SECONDS;
   render();
 };
@@ -46,11 +46,12 @@ const startCountdown = () => {
   }
 
   remainingSeconds = DURATION_SECONDS;
-  endTimestamp = Date.now() + DURATION_SECONDS * 1000;
+  startTimestamp = Date.now();
   render();
 
   countdownInterval = setInterval(() => {
-    remainingSeconds = Math.max(0, Math.ceil((endTimestamp - Date.now()) / 1000));
+    const elapsedSeconds = Math.floor((Date.now() - startTimestamp) / 1000);
+    remainingSeconds = Math.max(0, DURATION_SECONDS - elapsedSeconds);
 
     if (remainingSeconds <= 0) {
       stopCountdown();
