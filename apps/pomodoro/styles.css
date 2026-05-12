@@ -29,9 +29,6 @@ body {
 
 #pomodoro-key.running {
   background: #d30000;
-}
-
-#pomodoro-key:disabled {
   cursor: not-allowed;
   opacity: 0.7;
 }
