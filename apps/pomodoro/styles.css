@@ -31,6 +31,10 @@ body {
   background: #d30000;
 }
 
+#pomodoro-key:disabled {
+  cursor: not-allowed;
+}
+
 #timer-text {
   font-size: 2rem;
   font-weight: 700;
