@@ -1,4 +1,5 @@
 const DURATION_SECONDS = 25 * 60;
+const COMPLETION_DISPLAY_DURATION_MS = 1000;
 
 const keyElement = document.getElementById('pomodoro-key');
 const timerText = document.getElementById('timer-text');
@@ -55,15 +56,15 @@ const startCountdown = () => {
     remainingSeconds = Math.max(0, DURATION_SECONDS - elapsedSeconds);
 
     if (remainingSeconds <= 0) {
+      remainingSeconds = 0;
       const completedInterval = countdownInterval;
       clearInterval(completedInterval);
-      remainingSeconds = 0;
       render();
       setTimeout(() => {
         if (countdownInterval === completedInterval) {
           stopCountdown();
         }
-      }, 1000);
+      }, COMPLETION_DISPLAY_DURATION_MS);
       return;
     }
 
