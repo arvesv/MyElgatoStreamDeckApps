@@ -1,0 +1,44 @@
+:root {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #111;
+  font-family: Arial, sans-serif;
+}
+
+#pomodoro-key {
+  width: 144px;
+  height: 144px;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  background: #000;
+  color: #fff;
+}
+
+#pomodoro-key.running {
+  background: #d30000;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+#timer-text {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#tomato-image {
+  width: 88px;
+  height: 88px;
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tomato">
+  <circle cx="32" cy="36" r="22" fill="#e02020" />
+  <path fill="#3e9f2f" d="M32 9c-4 5-9 5-14 4 3 4 8 6 14 6s11-2 14-6c-5 1-10 1-14-4Z" />
+  <path fill="#3e9f2f" d="M20 16c5 0 8-4 12-9 4 5 7 9 12 9-3 4-8 7-12 7s-9-3-12-7Z" />
+</svg>

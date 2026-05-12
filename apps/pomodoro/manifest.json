@@ -1,0 +1,8 @@
+{
+  "id": "com.arvesv.pomodoro",
+  "name": "Pomodoro Timer",
+  "description": "25-minute Pomodoro timer key for Stream Deck.",
+  "version": "1.0.0",
+  "entry": "index.html",
+  "icon": "tomato.svg"
+}
