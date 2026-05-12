@@ -22,7 +22,6 @@ const render = () => {
   keyElement.classList.toggle('running', isRunning);
   keyElement.classList.toggle('idle', !isRunning);
   keyElement.disabled = isRunning;
-  keyElement.setAttribute('aria-disabled', isRunning ? 'true' : 'false');
   keyElement.setAttribute(
     'aria-label',
     isRunning ? 'Pomodoro timer running' : 'Start Pomodoro timer'
