@@ -33,6 +33,7 @@ body {
 
 #pomodoro-key:disabled {
   cursor: not-allowed;
+  opacity: 0.9;
 }
 
 #timer-text {
