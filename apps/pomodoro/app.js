@@ -7,6 +7,7 @@ const tomatoImage = document.getElementById('tomato-image');
 
 let remainingSeconds = DURATION_SECONDS;
 let countdownInterval = null;
+let completionTimeout = null;
 let startTimestamp = null;
 
 const formatTime = (seconds) => {
@@ -18,7 +19,7 @@ const formatTime = (seconds) => {
 };
 
 const render = () => {
-  const isRunning = countdownInterval !== null;
+  const isRunning = countdownInterval !== null || completionTimeout !== null;
 
   keyElement.classList.toggle('running', isRunning);
   keyElement.classList.toggle('idle', !isRunning);
@@ -36,14 +37,16 @@ const render = () => {
 
 const stopCountdown = () => {
   clearInterval(countdownInterval);
+  clearTimeout(completionTimeout);
   countdownInterval = null;
+  completionTimeout = null;
   startTimestamp = null;
   remainingSeconds = DURATION_SECONDS;
   render();
 };
 
 const startCountdown = () => {
-  if (countdownInterval !== null) {
+  if (countdownInterval !== null || completionTimeout !== null) {
     return;
   }
 
@@ -56,11 +59,12 @@ const startCountdown = () => {
     remainingSeconds = Math.max(0, DURATION_SECONDS - elapsedSeconds);
 
     if (remainingSeconds <= 0) {
-      const completedInterval = countdownInterval;
-      clearInterval(completedInterval);
+      clearInterval(countdownInterval);
+      countdownInterval = null;
       render();
-      setTimeout(() => {
-        if (countdownInterval === completedInterval) {
+      completionTimeout = setTimeout(() => {
+        completionTimeout = null;
+        if (countdownInterval === null) {
           stopCountdown();
         }
       }, COMPLETION_DISPLAY_DURATION_MS);
