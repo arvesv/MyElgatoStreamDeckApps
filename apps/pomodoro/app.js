@@ -64,9 +64,7 @@ const startCountdown = () => {
       render();
       completionTimeout = setTimeout(() => {
         completionTimeout = null;
-        if (countdownInterval === null) {
-          stopCountdown();
-        }
+        stopCountdown();
       }, COMPLETION_DISPLAY_DURATION_MS);
       return;
     }
