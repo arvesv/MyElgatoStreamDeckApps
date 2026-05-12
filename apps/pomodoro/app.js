@@ -56,7 +56,6 @@ const startCountdown = () => {
     remainingSeconds = Math.max(0, DURATION_SECONDS - elapsedSeconds);
 
     if (remainingSeconds <= 0) {
-      remainingSeconds = 0;
       const completedInterval = countdownInterval;
       clearInterval(completedInterval);
       render();
